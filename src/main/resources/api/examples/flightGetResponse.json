@@ -1,0 +1,24 @@
+[
+  {
+        "price": 3700,
+        "destination": "Kolkata",
+        "flightNumber": "FL0001",
+        "departureDate": "2021-12-27T12:40:00",
+        "source": "Bangalore",
+        "created_date": "2021-12-28T00:33:30",
+        "updated_date": "2021-12-28T00:33:30",
+        "airline": "Indigo",
+        "totalSeats": 40
+    },
+    {
+        "price": 3400,
+        "destination": "Hyderabad",
+        "flightNumber": "FL0002",
+        "departureDate": "2021-12-28T14:00:00",
+        "source": "Bangalore",
+        "created_date": "2021-12-28T12:59:26",
+        "updated_date": "2021-12-28T12:59:26",
+        "airline": "Indigo",
+        "totalSeats": 40
+    }
+]

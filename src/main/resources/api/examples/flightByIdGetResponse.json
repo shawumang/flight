@@ -1,0 +1,12 @@
+
+    {
+        "price": 3400,
+        "destination": "Hyderabad",
+        "flightNumber": "FL0001",
+        "departureDate": "2021-12-28T14:00:00",
+        "source": "Bangalore",
+        "created_date": "2021-12-28T12:59:26",
+        "updated_date": "2021-12-28T12:59:26",
+        "airline": "Indigo",
+        "totalSeats": 40
+    }

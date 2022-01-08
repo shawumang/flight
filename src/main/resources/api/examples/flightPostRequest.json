@@ -1,0 +1,9 @@
+{
+        "flightNumber":"FL0005",
+        "price": 4500,
+        "destination": "Delhi",
+        "departureDate": "2021-12-30T17:40:00",
+        "source": "Mumbai",
+        "airline": "Indigo",
+        "totalSeats": 40
+}
