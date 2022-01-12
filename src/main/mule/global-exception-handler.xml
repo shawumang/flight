@@ -83,7 +83,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 		</on-error-propagate>
 	</error-handler>
 	<sub-flow name="global-prepare-error-response-sub-flow" doc:id="460191ed-d1eb-4a7e-a1b1-0a5781aeb2c5" >
-		<logger level="ERROR" doc:name="Logger" doc:id="3861ca1e-f8bd-4d7d-a540-fe697881254f" message="response': #[vars.httpStatus], 'errorCode': #[payload], 'errorMessage': #[if (vars.errorMessage != null)  vars.errorMessage else ' '], 'errorDescription': #[if (vars.errorDescription != null) vars.errorDescription else ' ']" category="Audit" />
+		<logger level="ERROR" doc:name="Logger" doc:id="3861ca1e-f8bd-4d7d-a540-fe697881254f" message="response': #[vars.httpStatus], 'errorCode': #[payload], 'errorMessage': #[if (vars.errorMessage != null)  vars.errorMessage else error.errorMessage], 'errorDescription': #[if (vars.errorDescription != null) vars.errorDescription else ' ']" category="Audit" />
 		<ee:transform doc:name="Create Error Message" doc:id="19ff2cdc-e473-45e5-a85e-34a71034ffe9" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
@@ -93,7 +93,7 @@ output application/json
   error: {
     errorCode: vars.httpStatus default 500,
     errorDateTime: now() as String {format: "yyyy-MM-dd'T'HH:mm:ssZ"},
-    errorMessage: vars.errorMessage,
+    errorMessage: vars.errorMessage default error.errorType,
     errorDescription: error.description as String
   }
 }]]></ee:set-payload>
