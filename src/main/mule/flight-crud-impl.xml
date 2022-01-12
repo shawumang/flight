@@ -111,7 +111,7 @@ payload map {
 		<salesforce:delete doc:name="Delete" doc:id="d84daf21-f162-4cb3-bb7c-fa35bbf2990a" config-ref="Salesforce_Config" >
 			<salesforce:ids ><![CDATA[#[payload.id]]]></salesforce:ids>
 		</salesforce:delete>
-		<logger level="INFO" doc:name="Logger" doc:id="1b573d7e-a643-43c0-84d3-a3b27a296dce" message="after deletion-----------------------------------------------" />
+		<logger level="INFO" doc:name="Logger" doc:id="1b573d7e-a643-43c0-84d3-a3b27a296dce" message="deleted record" />
 		<ee:transform doc:name="Transform Message" doc:id="fb7fca33-bc61-4eb4-b8d6-6e019d5766fb" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
@@ -140,7 +140,7 @@ payload map((pay,index)->{
 	destination: pay.destination__c,
 	price:pay.price__c,
 	flightNumber: pay.Name,
-	departureDate: pay.departureDate__c as DateTime,
+	departureDate: pay.departureDate__c as DateTime default '',
 	source: pay.source__c,
 	airline: pay.airline__c,
 	totalSeats: pay.totalSeats__c,
@@ -268,7 +268,7 @@ payload map((pay,index)->{
 })]]></ee:set-payload>
 					</ee:message>
 				</ee:transform>
-				<logger level="INFO" doc:name="Logger" doc:id="ebbee1e9-04dc-438a-8608-9b9fab74a3ac" message='"airline partner " ++ #[attributes.uriParams.carPartner] ++ " from Source: " ++ #[attributes.queryParams.source] ++ " to destination " ++ #[attributes.queryParams.destination]' />
+				<logger level="INFO" doc:name="Logger" doc:id="ebbee1e9-04dc-438a-8608-9b9fab74a3ac" message='"airline partner : #[attributes.uriParams.airline]  from Source:  #[attributes.queryParams.source]  to destination :  #[attributes.queryParams.destination]' />
 			</when>
 			<otherwise >
 				<salesforce:query doc:name="Query" doc:id="73d12d31-9685-4d57-a263-c84bdee96fe4" config-ref="Salesforce_Config" >
@@ -293,7 +293,7 @@ payload map((pay,index)->{
 })]]></ee:set-payload>
 					</ee:message>
 				</ee:transform>
-				<logger level="INFO" doc:name="Logger" doc:id="987affb6-5f8f-4cc1-b3f9-e2e9c2cf4615" message='"airline partner " ++ #[attributes.uriParams.carPartner]' />
+				<logger level="INFO" doc:name="Logger" doc:id="987affb6-5f8f-4cc1-b3f9-e2e9c2cf4615" message='airline partner :  #[attributes.uriParams.airline]' />
 			</otherwise>
 		</choice>
 		<error-handler ref="global-exception-handlerError_Handler" />
